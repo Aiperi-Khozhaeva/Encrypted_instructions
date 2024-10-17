@@ -1,24 +1,24 @@
 
-# ID успешной отправки - 121189103
+# ID успешной отправки - 121340998
 
 
 def decode_string(data: str) -> str:
     stack: list = []
-    current_num: int = 0
+    current_num: str = ""  # сохраняем его как строку
     current_symbol: str = ""
 
     for char in data:
-        # если char будет число, current_num умножаем для многозначных
-        # чисел и плюсуем значание char
-        if char.isdigit():
-            current_num = current_num * 10 + int(char)
+        # если char будет число
+        if char in '0123456789':
+            current_num += char  # просто добавляем к current_num значение char
             # если char открывающая скобка, просто добавляю в список stack
-            # символы и числа
+            # символы и числа (current_num преврашаем в инт)
         elif char == '[':
-            stack.append((current_symbol, current_num))
+            stack.append((current_symbol, int(current_num)))
+            # преобразовали current_num в инт
             # и нужно сбрасывать текущие значения current_symbol и current_num
             current_symbol = ""
-            current_num = 0
+            current_num = ""  # тут должен быть опять строкой
             # если char закрывающая скобка, достаем из стека строку (новая
             # переменная last_symbol) и число (num)
         elif char == ']':
