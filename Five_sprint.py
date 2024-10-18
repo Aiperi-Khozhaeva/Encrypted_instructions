@@ -1,15 +1,16 @@
 
-# ID успешной отправки - 121340998
+# ID успешной отправки - 121413199
 
+CONSTANT_NUM = set('0123456789')
 
 def decode_string(data: str) -> str:
     stack: list = []
-    current_num: str = ""  # сохраняем его как строку
-    current_symbol: str = ""
+    current_symbol, current_num = "", ""  # сохраняем его как строку
+
 
     for char in data:
         # если char будет число
-        if char in '0123456789':
+        if char in CONSTANT_NUM:
             current_num += char  # просто добавляем к current_num значение char
             # если char открывающая скобка, просто добавляю в список stack
             # символы и числа (current_num преврашаем в инт)
